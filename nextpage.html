@@ -1,0 +1,84 @@
+<html>
+  <ead>
+    <title>
+      Result page
+    </title>
+    <style>
+      .styling
+      {
+        display:flex;
+        flex-direction:column;
+        gap:10px;
+        font-weight:bold;
+        border:3px solid black;
+        align-items:center;
+        font-size:2em;
+        font-family:sans-serif;
+        background: linear-gradient(to right, #50c9c3, #96deda);
+      }
+      #container
+      {
+        display:flex;
+        flex-direction:column;
+        gap:10px;
+        font-weight:bold;
+      }
+      button{
+        display: block;
+        margin-top: 10px;
+        margin-left: 520px;
+        font-size: 20px;
+        padding: 10px;
+        border: none;
+        border-radius: 3px;
+        color: rgb(255, 255, 255);
+        background: rgba(80, 182, 105, 0.7);
+      }
+      button:hover{
+        background: rgba(56,204,93,0.7);
+        color:rgba(255,255,255);
+        cursor:pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+   
+    </div>
+  </body>
+  <script>
+    fetch('http://localhost:2000/getdata').then((res)=>{
+      return res.json()
+    }).then(res=>
+    {
+      console.log(res)
+      let container=document.getElementById("container");
+      Array.from(res).forEach((item)=>
+      {
+        let ob=document.createElement("div");
+        ob.classList.add('styling')
+        let fullname=document.createElement("div");
+        let username=document.createElement("div");
+        let email=document.createElement("div");
+        let phonenumber=document.createElement("div");
+        fullname.innerText="Fullname : "+item.fullname;
+        username.innerText="Username : "+item.username;
+        email.innerText="Email : "+item.email;
+        phonenumber.innerText="Phonenumber : "+item.phonenumber;
+        ob.appendChild(fullname);
+        ob.appendChild(username);
+        ob.appendChild(email);
+        ob.appendChild(phonenumber);
+        container.appendChild(ob);
+      })
+      let btn=document.createElement("button");
+      btn.innerText="Back to registration";
+      btn.style.width="200px";
+      btn.addEventListener('click',()=>
+      {
+          window.location.href="info-collection.html"
+      })
+      container.appendChild(btn);      
+    });
+  </script>
+</html>

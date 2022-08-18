@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css"/>
+  <title>Responsive Registration Form</title>
+</head>
+<body>
+  <div class="container">
+    <h1 class="form-title">Registration</h1>
+    <form id="form1">
+      <div class="main-user-info">
+        <div class="user-input-box">
+          <label for="fullName">Full Name</label>
+          <input type="text"
+                 id="fullName"
+                 name="fullName"
+                 placeholder="Enter Full Name"/>    
+        </div>
+
+        <div class="user-input-box">
+          <label for="username">Username</label>
+          <input type="text"
+                 id="username"
+                 name="username"
+                 placeholder="Enter Username"/>    
+        </div>
+        
+        <div class="user-input-box">
+          <label for="email">Email</label>
+          <input type="text"
+                 id="email"
+                 name="email"
+                 placeholder="Enter Email"/>    
+        </div>
+
+        <div class="user-input-box">
+          <label for="PhoneNumber">PhoneNumber</label>
+          <input type="text"
+                 id="PhoneNumber"
+                 name="PhoneNumber"
+                 placeholder="Enter PhoneNumber"/>    
+        </div>
+
+        <div class="user-input-box">
+          <label for="password">Password</label>
+          <input type="password"
+                 id="password"
+                 name="password"
+                 placeholder="Enter Password"/>    
+        </div>
+
+        <div class="user-input-box">
+          <label for="confirmPassword">Confirm Password</label>
+          <input type="password"
+                 id="confirmPassword"
+                 name="confirmPassword"
+                 placeholder="Confirm Password"/>    
+        </div>
+      </div>
+      <div class="form-submit-button">
+        <input type="submit" value="Register">
+      </div>
+    </form>
+    <br/>
+    <button class="dply-details-btn" id="dply">
+      Display Details</button>
+  </div>
+</body>
+<script>
+  fetch('http://localhost:2000/albin').then((res)=>{
+    return res.json()
+  }).then((res)=>{
+    let arr=document.getElementById("details")
+    arr.innerText=res.name+" "+res.age+" "+res.place
+  })
+  let f1=document.getElementById("form1")
+  f1.addEventListener('submit',(e)=>{
+    // e.preventDefault();
+    let fullName=document.getElementById('fullName');
+    let username=document.getElementById('username');
+    let email=document.getElementById('email');
+    let PhoneNumber=document.getElementById('PhoneNumber');
+    let password=document.getElementById('password');
+    let confirmPassword=document.getElementById('confirmPassword');
+    fetch('http://localhost:2000/vishnuajay',{
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify({
+        fullname:fullName.value,
+        username:username.value,
+        password:password.value,
+        phonenumber:PhoneNumber.value,
+        email:email.value
+      })
+    })
+  })
+  document.getElementById("dply").addEventListener("click",()=>
+    {
+        window.location.href="nextpage.html";
+    })
+</script>
+</html>
