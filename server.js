@@ -39,14 +39,14 @@ app.use(function(req, res, next)
        next();
 }});
 
-app.get('/micheal',(req,res)=>
-{     
-    res.status(200).send('<h1>albin micheal</h1>')
-})
+// app.get('/micheal',(req,res)=>
+// {     
+//     res.status(200).send('<h1>albin micheal</h1>')
+// })
 
-app.get('/albin',(req,res)=>{
-  res.json({name:"albin",age:21,place:"ekm"})
-})
+// app.get('/albin',(req,res)=>{
+//   res.json({name:"albin",age:21,place:"ekm"})
+// })
 
 app.get('/getdata',(req,res)=>{
   client.query('select * from userdetails',(err,responsequery)=>
@@ -63,6 +63,3 @@ app.post('/vishnuajay',(req,res)=>{
   '${req.body.password}','${req.body.phonenumber}',
   '${req.body.email}')`)
 })
-
-// let abc='ab=ujushvavh'
-// `${abc} is my name`
